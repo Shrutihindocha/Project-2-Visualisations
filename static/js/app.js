@@ -1,29 +1,77 @@
-// var url = "http://127.0.0.1:5000/api"
-
-// d3.json(url).then(function(data) {
-//     console.log(data);
-//   });
-  
+///////////////////////////////////// ALL OFFENCE LEVELS IN ONE DASHBOARD HTML PAGE?? ////////////////////////////////////
 
 
+/////////////////////////////////    LEVEL 1 OFFENCE    //////////////////////////////////////////////////
   d3.json("/api/lev1").then(data => {
     console.log(data)
     var data = [
       {
           x: data.map(row => row.offence1),
           y: data.map(row => row.count),
+          type: 'pie'
+      }
+    ];
+    var layout = {
+        title: `Offence Level 1`,
+        yaxis: {
+            title: `Offence Count`
+        },
+        xaxis: {
+            title: `Offence Type`
+        }
+    };
+  
+    Plotly.newPlot('pie', data, layout);
+  })
+
+
+/////////////////////////////////    LEVEL 2 OFFENCE    //////////////////////////////////////////////////
+
+  d3.json("/api/lev2").then(data => {
+    console.log(data)
+    var data = [
+      {
+          x: data.map(row => row.offence2),
+          y: data.map(row => row.count),
           type: 'bar'
       }
     ];
     var layout = {
-        title: `your title here`,
+        title: `Offence Level 2`,
         yaxis: {
-            title: `your y axis title here`
+            title: `Offence Count`
         },
         xaxis: {
-            title: `your x axis title here`
+            title: `Offence Type`
         }
     };
   
-    Plotly.newPlot('bar', data, layout);
+    Plotly.newPlot('bar2', data, layout);
+  })
+
+
+  
+
+/////////////////////////////////    LEVEL 3 OFFENCE    //////////////////////////////////////////////////
+  
+  d3.json("/api/lev3").then(data => {
+    console.log(data)
+    var data = [
+      {
+          x: data.map(row => row.offence3),
+          y: data.map(row => row.count),
+          type: 'bar'
+      }
+    ];
+    var layout = {
+        title: `Offence Level 3`,
+        yaxis: {
+            title: `Offence Count`
+        },
+        xaxis: {
+            title: `Offence Type`
+        }
+    };
+  
+    Plotly.newPlot('bar3', data, layout);
   })
