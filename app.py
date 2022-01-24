@@ -39,7 +39,9 @@ def lev1():
     # database setup
     engine = create_engine("sqlite:///Data/sa_crime_new.sqlite")
     conn = engine.connect()
-    lev1 = pd.read_sql("SELECT * FROM lev1_combined", conn).to_json(orient='records')
+    lev1 = pd.read_sql("SELECT * FROM lev1_combined", conn)
+    # json_data = lev1.to_json(orient='records')
+    return lev1
     return render_template("lev1.html")
 
 
@@ -53,8 +55,10 @@ def lev2():
     # database setup
     engine = create_engine("sqlite:///Data/sa_crime_new.sqlite")
     conn = engine.connect()
-    lev3 = pd.read_sql("SELECT * FROM lev2_combined", conn).to_json(orient='records')
-    return render_template("lev2.html")
+    lev2 = pd.read_sql("SELECT * FROM lev2_combined", conn)
+    json_data = lev2.to_json(orient='records')
+    return json_data
+    # return render_template("lev2.html")
 
 
 
@@ -66,8 +70,10 @@ def lev3():
     # database setup
     engine = create_engine("sqlite:///Data/sa_crime_new.sqlite")
     conn = engine.connect()
-    lev3 = pd.read_sql("SELECT * FROM lev3_combined", conn).to_json(orient='records')
-    return render_template("lev3.html")
+    lev3 = pd.read_sql("SELECT * FROM lev3_combined", conn)
+    json_data = lev3.to_json(orient='records')
+    return json_data
+
 
 
 
@@ -83,20 +89,30 @@ def maps():
 
 
 
-# @app.route("/api/lev2")
-# def lev2():
-#     engine = create_engine("sqlite:///Data/sa_crime_new.sqlite")
-#     conn = engine.connect()
-#     data = pd.read_sql("SELECT offence2, count FROM crime_data", conn)
-#     return data.groupby(["offence2"]).sum()["count"].reset_index().to_json(orient="records")
+
+@app.route("/api/lev1")
+def api_lev1():
+    engine = create_engine("sqlite:///Data/sa_crime_new.sqlite")
+    conn = engine.connect()
+    data = pd.read_sql("SELECT offence1, count FROM main_df", conn)
+    return data.groupby(["offence1"]).sum()["count"].reset_index().to_json(orient="records")
+
+
+
+@app.route("/api/lev2")
+def api_lev2():
+    engine = create_engine("sqlite:///Data/sa_crime_new.sqlite")
+    conn = engine.connect()
+    data = pd.read_sql("SELECT offence2, count FROM main_df", conn)
+    return data.groupby(["offence2"]).sum()["count"].reset_index().to_json(orient="records")
 
         
-# @app.route("/api/lev3")
-# def lev3():
-#     engine = create_engine("sqlite:///Data/sa_crime_new.sqlite")
-#     conn = engine.connect()
-#     data = pd.read_sql("SELECT offence3, count FROM crime_data", conn)
-#     return data.groupby(["offence3"]).sum()["count"].reset_index().to_json(orient="records")
+@app.route("/api/lev3")
+def api_lev3():
+    engine = create_engine("sqlite:///Data/sa_crime_new.sqlite")
+    conn = engine.connect()
+    data = pd.read_sql("SELECT offence3, count FROM main_df", conn)
+    return data.groupby(["offence3"]).sum()["count"].reset_index().to_json(orient="records")
 
 
 @app.route("/api/map")

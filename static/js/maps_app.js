@@ -32,9 +32,6 @@ d3.json("/api/map").then(data => {
 
   console.log(testData)  // {lat: Array(1538), lng: Array(1538), count: Array(1538)}
 
-  console.log(testData.head())
-
-
   var cfg = {
     // radius should be small ONLY if scaleRadius is true (or small radius is intended)
     // if scaleRadius is false it will be the constant radius used in pixels

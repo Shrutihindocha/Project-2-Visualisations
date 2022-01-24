@@ -8,7 +8,7 @@
       {
           x: data.map(row => row.offence1),
           y: data.map(row => row.count),
-          type: 'pie'
+          type: 'bar'
       }
     ];
     var layout = {
@@ -20,10 +20,8 @@
             title: `Offence Type`
         }
     };
-  
-    Plotly.newPlot('pie', data, layout);
+    Plotly.newPlot('bar', data, layout);
   })
-
 
 /////////////////////////////////    LEVEL 2 OFFENCE    //////////////////////////////////////////////////
 
@@ -50,8 +48,6 @@
   })
 
 
-  
-
 /////////////////////////////////    LEVEL 3 OFFENCE    //////////////////////////////////////////////////
   
   d3.json("/api/lev3").then(data => {
@@ -72,6 +68,5 @@
             title: `Offence Type`
         }
     };
-  
     Plotly.newPlot('bar3', data, layout);
   })
