@@ -8,7 +8,8 @@
       {
           x: data.map(row => row.offence1),
           y: data.map(row => row.count),
-          type: 'bar'
+          type: 'bar',
+          marker: {color:'orange'}
       }
     ];
     var layout = {
@@ -17,7 +18,8 @@
             title: `Offence Count`
         },
         xaxis: {
-            title: `Offence Type`
+            title: `Offence Type`,
+        orientation: 'v'
         }
     };
     Plotly.newPlot('bar', data, layout);
@@ -31,7 +33,8 @@
       {
           x: data.map(row => row.offence2),
           y: data.map(row => row.count),
-          type: 'bar'
+          type: 'bar',
+          marker: {color:'green'}
       }
     ];
     var layout = {
@@ -40,7 +43,8 @@
             title: `Offence Count`
         },
         xaxis: {
-            title: `Offence Type`
+            title: `Offence Type`,
+        orientation: 'v'
         }
     };
   
@@ -56,7 +60,8 @@
       {
           x: data.map(row => row.offence3),
           y: data.map(row => row.count),
-          type: 'bar'
+          type: 'bar',
+          marker: {color:'purple'}
       }
     ];
     var layout = {
@@ -66,6 +71,7 @@
         },
         xaxis: {
             title: `Offence Type`
+
         }
     };
     Plotly.newPlot('bar3', data, layout);
